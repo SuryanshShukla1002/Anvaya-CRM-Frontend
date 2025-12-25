@@ -102,62 +102,80 @@ const Report = () => {
       },
     },
   };
-  return (
-    <div className="flex min-h-screen bg-gray-100">
-      <div className="w-64 bg-[#0f172a] text-white p-6 space-y-6">
-        <h2 className="text-2xl font-bold mb-6">Anvaya CRM</h2>
 
-        <ul className="menu text-lg space-y-2">
+  return (
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
+      <div className="w-full md:w-64 bg-[#0f172a] text-white p-4 md:p-6 space-y-4 md:space-y-6">
+        <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
+          Anvaya CRM
+        </h2>
+
+        <ul className="menu text-base md:text-lg space-y-2">
           <Link to={"/"}>
-            <li className="hover:bg-gray-800 p-2">
-              ← Back to <br /> Dashboard
+            <li className="hover:bg-gray-800 p-2 rounded">
+              ← Back to <br className="hidden md:block" /> Dashboard
             </li>
           </Link>
         </ul>
       </div>
 
-      <main className="flex-1 p-10">
-        <h1 className="text-3xl font-bold mb-8">Report Overview</h1>
-        <div className="card bg-base-100 shadow-xl mb-8">
+      <main className="flex-1 p-4 sm:p-6 md:p-10">
+        <h1 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8">
+          Report Overview
+        </h1>
+
+        <div className="card bg-base-100 shadow-xl mb-6 md:mb-8">
           <div className="card-body">
-            <h2 className="card-title">Total Leads Closed and in Pipeline</h2>
-            <div className="flex items-center gap-10 mt-6">
-              {/* Pie Placeholder */}
-              <div className="w-48 h-48">
+            <h2 className="card-title text-lg md:text-xl">
+              Total Leads Closed and in Pipeline
+            </h2>
+
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10 mt-6">
+              <div className="w-40 h-40 md:w-48 md:h-48">
                 <Pie data={pieData} options={pieOptions} />
               </div>
+
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <span className="badge badge-primary"></span>
-                  <span>All Closed Leads within last week</span>
+                  <span className="text-sm md:text-base">
+                    All Closed Leads within last week
+                  </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="badge badge-success"></span>
-                  <span>Leads In Pipeline</span>
+                  <span className="text-sm md:text-base">
+                    Leads In Pipeline
+                  </span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Bar Chart */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <div className="card bg-base-100 shadow-xl">
             <div className="card-body">
-              <h2 className="card-title">Leads Closed by Sales Agent</h2>
+              <h2 className="card-title text-lg md:text-xl">
+                Leads Closed by Sales Agent
+              </h2>
 
-              <div className="w-64 h-64">
-                <ClosedLeadsByAgent closedByAgent={closedAgentLead} />
+              <div className="w-full flex justify-center">
+                <div className="w-56 h-56 md:w-64 md:h-64">
+                  <ClosedLeadsByAgent closedByAgent={closedAgentLead} />
+                </div>
               </div>
             </div>
           </div>
 
           <div className="card bg-base-100 shadow-xl">
             <div className="card-body">
-              <h2 className="card-title">Lead Status Distribution</h2>
+              <h2 className="card-title text-lg md:text-xl">
+                Lead Status Distribution
+              </h2>
 
-              <div className="flex items-center justify-between mt-6">
-                <div className="w-52 h-52 flex items-center justify-center">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mt-6">
+                <div className="w-44 h-44 md:w-52 md:h-52 flex items-center justify-center">
                   <Pie data={pieData1} options={pieOptions} />
                 </div>
 
@@ -166,22 +184,18 @@ const Report = () => {
                     <span className="w-4 h-4 rounded bg-warning"></span>
                     <span className="text-sm font-medium">New</span>
                   </div>
-
                   <div className="flex items-center gap-3">
                     <span className="w-4 h-4 rounded bg-secondary"></span>
                     <span className="text-sm font-medium">Qualified</span>
                   </div>
-
                   <div className="flex items-center gap-3">
                     <span className="w-4 h-4 rounded bg-error"></span>
                     <span className="text-sm font-medium">Proposal</span>
                   </div>
-
                   <div className="flex items-center gap-3">
                     <span className="w-4 h-4 rounded bg-primary"></span>
                     <span className="text-sm font-medium">Contacted</span>
                   </div>
-
                   <div className="flex items-center gap-3">
                     <span className="w-4 h-4 rounded bg-success"></span>
                     <span className="text-sm font-medium">Closed</span>
