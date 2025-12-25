@@ -149,29 +149,29 @@ const LeadManagement = () => {
   }, [detailId]);
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      <div className="w-64 bg-gray-900 text-white p-6 space-y-6">
-        <h2 className="text-2xl font-bold mb-4">Lead Management</h2>
-        <ul className="menu text-lg space-y-2">
+    <div className="flex min-h-screen bg-gray-100 flex-col md:flex-row">
+      <div className="w-full md:w-64 bg-gray-900 text-white p-4 md:p-6 space-y-6">
+        <h2 className="text-xl md:text-2xl font-bold mb-4">Lead Management</h2>
+        <ul className="menu text-base md:text-lg space-y-2">
           <Link to={"/"}>
-            <li className="hover:bg-gray-800">
-              ← Back to <br /> Dashboard
+            <li className="hover:bg-gray-800 p-2 rounded">
+              ← Back to <br className="hidden md:block" /> Dashboard
             </li>
           </Link>
         </ul>
       </div>
 
-      <div className="flex-1 p-10">
-        <h1 className="text-3xl font-bold mb-8">
+      <div className="flex-1 p-4 md:p-10">
+        <h1 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8">
           Lead Management: {lead.name}
         </h1>
 
-        <h2 className="text-2xl font-bold mb-4">Lead Details</h2>
+        <h2 className="text-xl md:text-2xl font-bold mb-4">Lead Details</h2>
 
-        <div className="card bg-white shadow-md p-6 rounded-xl mb-10 max-w-2xl">
+        <div className="card bg-white shadow-md p-4 md:p-6 rounded-xl mb-8 md:mb-10 max-w-full md:max-w-2xl">
           {!isEditing ? (
             <>
-              <div className="flex justify-between items-start mb-4">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
                 <div>
                   <p className="text-gray-700">
                     <strong>Lead Name:</strong> {lead.name}
@@ -204,7 +204,7 @@ const LeadManagement = () => {
             </>
           ) : (
             <>
-              <h3 className="text-center text-xl mb-2 font-semibold">
+              <h3 className="text-center text-lg md:text-xl mb-2 font-semibold">
                 Edit Your Lead details
               </h3>
               <input
@@ -263,16 +263,16 @@ const LeadManagement = () => {
             </div>
           )}
           {isEditing ? (
-            <div className="flex gap-3 mt-4">
+            <div className="flex flex-col sm:flex-row gap-3 mt-4">
               <button
-                className="btn btn-secondary text-white"
+                className="btn btn-secondary text-white w-full sm:w-auto"
                 onClick={editLeadDetail}
               >
                 Save
               </button>
 
               <button
-                className="btn btn-outline"
+                className="btn btn-outline w-full sm:w-auto"
                 onClick={() => setIsEditing(false)}
               >
                 Cancel
@@ -280,7 +280,7 @@ const LeadManagement = () => {
             </div>
           ) : (
             <button
-              className="btn btn-primary px-6 text-white mt-4"
+              className="btn btn-primary px-6 text-white mt-4 w-full sm:w-auto"
               onClick={() => {
                 setEditDetails({
                   name: eachData.name || "",
@@ -297,22 +297,21 @@ const LeadManagement = () => {
           )}
         </div>
 
-        <h2 className="text-2xl font-bold mb-4">Comments</h2>
-        <div className="space-y-4 max-w-2xl">
+        <h2 className="text-xl md:text-2xl font-bold mb-4">Comments</h2>
+        <div className="space-y-4 max-w-full md:max-w-2xl">
           {comment.map((eachComment, index) => (
             <div key={index} className="card bg-white shadow-md p-4 rounded-xl">
-              <p className="font-semibold">
+              <p className="font-semibold text-sm md:text-base">
                 {eachComment?.author} - {eachComment?.createdAt?.split("T")[0]}
               </p>
-              <p className="text-gray-700 mt-1">
+              <p className="text-gray-700 mt-1 text-sm md:text-base">
                 Comment: {eachComment.commentText}
               </p>
             </div>
           ))}
         </div>
 
-        {/* -------- Add New Comment -------- */}
-        <div className="card bg-white shadow-md p-4 rounded-xl mt-6 max-w-2xl">
+        <div className="card bg-white shadow-md p-4 rounded-xl mt-6 max-w-full md:max-w-2xl">
           <form onSubmit={sendNewComment}>
             <textarea
               className="textarea textarea-bordered w-full mb-4"
@@ -323,7 +322,7 @@ const LeadManagement = () => {
               }
             ></textarea>
 
-            <button className="btn btn-primary px-6 text-white">
+            <button className="btn btn-primary px-6 text-white w-full sm:w-auto">
               Submit Comment
             </button>
           </form>
