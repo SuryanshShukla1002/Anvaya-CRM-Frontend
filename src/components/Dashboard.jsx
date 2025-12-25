@@ -15,80 +15,40 @@ const Dashboard = () => {
       setLoading(true);
       const res = await fetch("http://localhost:3000/leads", {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       });
-
-      if (!res.ok) {
-        return "Failed to fetch the data";
-      }
-
       const data = await res.json();
       setLeads(data);
       setLoading(false);
     } catch (err) {
-      console.log(err);
       setLoading(false);
     }
   };
 
   useEffect(() => {
     const fetchLeadNew = async () => {
-      try {
-        const res = await fetch(
-          `http://localhost:3000/lead/status/get?status=New`,
-          {
-            method: "GET",
-          }
-        );
-        const data = await res.json();
-        setShowNew(data);
-      } catch (error) {
-        console.log(error);
-      }
+      const res = await fetch(
+        "http://localhost:3000/lead/status/get?status=New"
+      );
+      setShowNew(await res.json());
     };
-
     const fetchLeadContacted = async () => {
-      try {
-        const res = await fetch(
-          "http://localhost:3000/lead/status/get?status=Contacted",
-          {
-            method: "GET",
-          }
-        );
-        const data = await res.json();
-        // console.log(data.length);
-        setShowContacted(data);
-      } catch (error) {
-        console.log(error);
-      }
+      const res = await fetch(
+        "http://localhost:3000/lead/status/get?status=Contacted"
+      );
+      setShowContacted(await res.json());
     };
-
     const fetchLeadQualified = async () => {
-      try {
-        const res = await fetch(
-          "http://localhost:3000/lead/status/get?status=Qualified",
-          { method: "GET" }
-        );
-        const data = await res.json();
-        setShowQualified(data);
-      } catch (error) {
-        console.log(error);
-      }
+      const res = await fetch(
+        "http://localhost:3000/lead/status/get?status=Qualified"
+      );
+      setShowQualified(await res.json());
     };
-
     const fetchLeadProposalSent = async () => {
-      try {
-        const res = await fetch(
-          "http://localhost:3000/lead/status/get?status=Proposal%20Sent",
-          { method: "GET" }
-        );
-        const data = await res.json();
-        setShowProposalSent(data);
-      } catch (error) {
-        console.log(error);
-      }
+      const res = await fetch(
+        "http://localhost:3000/lead/status/get?status=Proposal%20Sent"
+      );
+      setShowProposalSent(await res.json());
     };
 
     fetchLeadNew();
@@ -98,28 +58,14 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    const filterByStatus = async () => {
-      try {
-        let url = statusUid
-          ? `http://localhost:3000/lead/status/get?status=${filteringStatus}`
-          : "";
-        const res = await fetch(url);
-        const data = await res.json();
-        setFilteringStatus(data);
-      } catch (error) {}
-    };
-    filterByStatus(filteringStatus);
-  }, [filteringStatus]);
-
-  useEffect(() => {
     fetchLeadData();
   }, []);
 
   return (
     <>
       <section>
-        <div className="text-center mt-4 mb-4">
-          <h1 className="text-4xl">
+        <div className="text-center mt-4 mb-4 px-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl">
             <span className="text-primary">Welcome</span>{" "}
             <span className="text-secondary">to</span>{" "}
             <span className="text-primary">Anvaya</span>{" "}
@@ -130,54 +76,36 @@ const Dashboard = () => {
       </section>
 
       <section>
-        <div className="flex bg-gray-100 gap-4">
-          <div className="w-64 min-h-screen bg-[#0f172a] text-white p-6 space-y-6 rounded-2xl">
-            <h2 className="text-2xl font-bold mb-4">Side Bar</h2>
-
-            <ul className="text-lg space-y-4">
+        <div className="flex flex-col lg:flex-row bg-gray-100 gap-4">
+          <div className="w-full lg:w-64 bg-[#0f172a] text-white p-6 space-y-6 rounded-2xl">
+            <h2 className="text-xl lg:text-2xl font-bold mb-4">Side Bar</h2>
+            <ul className="text-base lg:text-lg space-y-4">
               <Link to={"/leads"}>
-                <li className="p-1 hover:text-secondary cursor-pointer mb-2">
-                  📝 Leads
-                </li>
+                <li className="hover:text-secondary">📝 Leads</li>
               </Link>
-
               <Link to={"/salesManage"}>
-                <li className="p-1 hover:text-secondary cursor-pointer mb-3">
-                  📈 Sales
-                </li>
+                <li className="hover:text-secondary">📈 Sales</li>
               </Link>
-
               <Link to={"/leadStatus"}>
-                <li className="p-1 hover:text-secondary cursor-pointer mb-3">
-                  ⏳ Status
-                </li>
+                <li className="hover:text-secondary">⏳ Status</li>
               </Link>
-
               <Link to={"/report"}>
-                <li className="p-1 hover:text-secondary cursor-pointer mb-3">
-                  📊 Reports
-                </li>
+                <li className="hover:text-secondary">📊 Reports</li>
               </Link>
-
               <Link to={"/addLead"}>
-                <li className="p-1 hover:text-secondary cursor-pointer mb-3">
-                  ➕ Add New
-                </li>
+                <li className="hover:text-secondary">➕ Add New</li>
               </Link>
-
               <Link to={"/all-leads"}>
-                <li className="p-1 hover:text-secondary cursor-pointer ">
-                  ⚙️ Settings
-                </li>
+                <li className="hover:text-secondary">⚙️ Settings</li>
               </Link>
             </ul>
           </div>
 
-          <div className="w-3/4">
+          <div className="w-full lg:w-3/4 px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
               {leads.slice(0, 3).map((lead) => (
                 <div key={lead._id} className="card bg-primary shadow-sm">
-                  <figure className="px-10 pt-10">
+                  <figure className="px-6 pt-6">
                     <img
                       src="https://placehold.co/600x400?text=Leads"
                       alt="Lead"
@@ -185,80 +113,57 @@ const Dashboard = () => {
                     />
                   </figure>
                   <div className="card-body items-center text-center">
-                    <h2 className="card-title text-white">
+                    <h2 className="card-title text-white text-sm sm:text-base">
                       Lead name: {lead.name}
                     </h2>
-                    <p className="text-white">
+                    <p className="text-white text-sm">
                       <b>Source: {lead.source}</b>
                     </p>
-                    <div className="card-actions">
-                      <Link to={`/leadManage/${lead.id || lead._id}`}>
-                        <button className="btn btn-secondary hover:bg-amber-600">
-                          View Now
-                        </button>
-                      </Link>
-                    </div>
+                    <Link to={`/leadManage/${lead.id || lead._id}`}>
+                      <button className="btn btn-secondary">View Now</button>
+                    </Link>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="bg-white shadow-md p-4 rounded-lg mb-4  mt-5 w-3/4">
-              <h1 className=" font-semibold mb-2 text-3xl">Lead Status:</h1>
-              {(!filteringStatus || filteringStatus === "New") && (
-                <>
-                  <div className="card shadow p-4 rounded-xl bg-green-300">
-                    <h2 className="text-xl font-semibold">
-                      New: [{showNew.length}]{" "}
-                      {showNew.length > 1 ? "Leads" : "Lead"}
-                    </h2>
-                  </div>
-                  <div className="divider"></div>
-                </>
-              )}
 
-              {(!filteringStatus || filteringStatus === "Contacted") && (
-                <>
-                  <div className="card shadow p-4 rounded-xl bg-green-300">
-                    <h2 className="text-xl font-semibold">
-                      Contacted: [{showContacted.length}]{" "}
-                      {showContacted.length > 1 ? "Leads" : "Lead"}
-                    </h2>
-                  </div>
-                  <div className="divider"></div>
-                </>
-              )}
-              {(!filteringStatus || filteringStatus === "Qualified") && (
-                <>
-                  <div className="card shadow p-4 rounded-xl bg-green-300">
-                    <h2 className="text-xl font-semibold">
-                      Qualified: [{showQualified.length}]{" "}
-                      {showQualified.length > 1 ? "Leads" : "Lead"}
-                    </h2>
-                  </div>
-                  <div className="divider"></div>
-                </>
-              )}
+            <div className="bg-white shadow-md p-4 rounded-lg mt-6 w-full">
+              <h1 className="font-semibold mb-2 text-xl sm:text-2xl">
+                Lead Status:
+              </h1>
 
-              {(!filteringStatus || filteringStatus === "Proposal Sent") && (
-                <>
-                  <div className="card shadow p-4 rounded-xl bg-green-300">
-                    <h2 className="text-xl font-semibold">
-                      Proposal Sent: [{showProposalSent.length}]{" "}
-                      {showProposalSent.length > 1 ? "Leads" : "Lead"}
-                    </h2>
-                  </div>
-                  <div className="divider"></div>
-                </>
-              )}
+              <div className="space-y-4">
+                <div className="card p-4 rounded-xl bg-green-300">
+                  <h2 className="text-base sm:text-xl font-semibold">
+                    New: [{showNew.length}]
+                  </h2>
+                </div>
+                <div className="card p-4 rounded-xl bg-green-300">
+                  <h2 className="text-base sm:text-xl font-semibold">
+                    Contacted: [{showContacted.length}]
+                  </h2>
+                </div>
+                <div className="card p-4 rounded-xl bg-green-300">
+                  <h2 className="text-base sm:text-xl font-semibold">
+                    Qualified: [{showQualified.length}]
+                  </h2>
+                </div>
+                <div className="card p-4 rounded-xl bg-green-300">
+                  <h2 className="text-base sm:text-xl font-semibold">
+                    Proposal Sent: [{showProposalSent.length}]
+                  </h2>
+                </div>
+              </div>
             </div>
-            <div className="card bg-white shadow-md rounded-xl max-w-3xl p-6 mb-6">
-              <div className='className="flex flex-wrap gap-4 mb-4"'>
+
+            <div className="card bg-white shadow-md rounded-xl w-full max-w-3xl p-6 my-6">
+              <div className="flex flex-col sm:flex-row gap-4 mb-4">
                 <div>
                   <label className="block text-sm font-semibold mb-1">
                     Filter by Status
                   </label>
                   <select
-                    className="select select-bordered w-40"
+                    className="select select-bordered w-full sm:w-40"
                     value={filteringStatus}
                     onChange={(e) => setFilteringStatus(e.target.value)}
                   >
@@ -271,8 +176,9 @@ const Dashboard = () => {
                   </select>
                 </div>
               </div>
+
               <Link to={"/addLead"}>
-                <button className="btn btn-primary px-6 text-white mt-3">
+                <button className="btn btn-primary w-full sm:w-auto">
                   Add New Lead
                 </button>
               </Link>
