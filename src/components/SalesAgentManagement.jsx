@@ -6,7 +6,7 @@ const SalesAgentManagement = () => {
 
   const handleAgentApi = async (req, res) => {
     try {
-      const res = await fetch("http://localhost:3000/agents", {
+      const res = await fetch("https://anvaya-crm-backend-taupe.vercel.app/agents", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

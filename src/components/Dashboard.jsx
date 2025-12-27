@@ -13,7 +13,7 @@ const Dashboard = () => {
   const fetchLeadData = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:3000/leads", {
+      const res = await fetch("https://anvaya-crm-backend-taupe.vercel.app/leads", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -28,25 +28,25 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchLeadNew = async () => {
       const res = await fetch(
-        "http://localhost:3000/lead/status/get?status=New"
+        "https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?status=New"
       );
       setShowNew(await res.json());
     };
     const fetchLeadContacted = async () => {
       const res = await fetch(
-        "http://localhost:3000/lead/status/get?status=Contacted"
+        "https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?status=Contacted"
       );
       setShowContacted(await res.json());
     };
     const fetchLeadQualified = async () => {
       const res = await fetch(
-        "http://localhost:3000/lead/status/get?status=Qualified"
+        "https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?status=Qualified"
       );
       setShowQualified(await res.json());
     };
     const fetchLeadProposalSent = async () => {
       const res = await fetch(
-        "http://localhost:3000/lead/status/get?status=Proposal%20Sent"
+        "https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?status=Proposal%20Sent"
       );
       setShowProposalSent(await res.json());
     };

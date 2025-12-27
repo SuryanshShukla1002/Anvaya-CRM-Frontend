@@ -10,7 +10,7 @@ const LeadStatus = () => {
 
   const handleSalesAgent = async () => {
     try {
-      const res = await fetch("http://localhost:3000/agents", {
+      const res = await fetch("https://anvaya-crm-backend-taupe.vercel.app/agents", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -54,13 +54,13 @@ const LeadStatus = () => {
     const handleFilterSalesAgent = async () => {
       try {
         const resNew = await fetch(
-          `http://localhost:3000/lead/status/get?status=New&salesAgent=${agentId}`
+          `https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?status=New&salesAgent=${agentId}`
         );
         const resQualified = await fetch(
-          `http://localhost:3000/lead/status/get?status=Qualified&salesAgent=${agentId}`
+          `https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?status=Qualified&salesAgent=${agentId}`
         );
         const resProposalSent = await fetch(
-          `http://localhost:3000/lead/status/get?status=Proposal%20Sent&salesAgent=${agentId}`
+          `https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?status=Proposal%20Sent&salesAgent=${agentId}`
         );
         setNewStatus(await resNew.json());
         setQualifiedStatus(await resQualified.json());
@@ -76,7 +76,7 @@ const LeadStatus = () => {
     const fetchLeadBystatusNew = async () => {
       try {
         const res = await fetch(
-          "http://localhost:3000/lead/status/get?status=New"
+          "https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?status=New"
         );
         const data = await res.json();
         setNewStatus(data);
@@ -88,7 +88,7 @@ const LeadStatus = () => {
     const fetchLeadBystatusQualified = async () => {
       try {
         const res = await fetch(
-          "http://localhost:3000/lead/status/get?status=Qualified"
+          "https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?status=Qualified"
         );
         const data = await res.json();
         setQualifiedStatus(data);
@@ -100,7 +100,7 @@ const LeadStatus = () => {
     const fetchLeadBystatusProposal = async () => {
       try {
         const res = await fetch(
-          "http://localhost:3000/lead/status/get?status=Proposal%20Sent"
+          "https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?status=Proposal%20Sent"
         );
         const data = await res.json();
         setProposalSent(data);

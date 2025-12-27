@@ -44,13 +44,16 @@ const LeadManagement = () => {
 
   const editLeadDetail = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/leads/${detailId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editDetails),
-      });
+      const res = await fetch(
+        `https://anvaya-crm-backend-taupe.vercel.app/leads/${detailId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editDetails),
+        }
+      );
       if (!res.ok) {
         console.log("Failed to update the lead");
         return;
@@ -69,7 +72,7 @@ const LeadManagement = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `http://localhost:3000/leads/${detailId}/comments`,
+        `https://anvaya-crm-backend-taupe.vercel.app/leads/${detailId}/comments`,
         {
           method: "POST",
           headers: {
@@ -97,7 +100,7 @@ const LeadManagement = () => {
   const fetchCommentLead = async () => {
     try {
       const res = await fetch(
-        `http://localhost:3000/leads/${detailId}/comments`,
+        `https://anvaya-crm-backend-taupe.vercel.app/leads/${detailId}/comments`,
         {
           method: "GET",
           headers: {
@@ -118,7 +121,7 @@ const LeadManagement = () => {
   };
   const fetchEachLead = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/lead/${detailId}`, {
+      const res = await fetch(`https://anvaya-crm-backend-taupe.vercel.app/lead/${detailId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

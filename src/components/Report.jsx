@@ -11,9 +11,12 @@ const Report = () => {
 
   const leadInPipeline = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/report/pipeline`, {
-        method: "GET",
-      });
+      const res = await fetch(
+        `https://anvaya-crm-backend-taupe.vercel.app/report/pipeline`,
+        {
+          method: "GET",
+        }
+      );
       const data = await res.json();
       setLeadsinPipeline(data);
     } catch (error) {
@@ -23,9 +26,12 @@ const Report = () => {
 
   const leadsInClosed = async () => {
     try {
-      const res = await fetch("http://localhost:3000/report/last-week", {
-        method: "GET",
-      });
+      const res = await fetch(
+        "https://anvaya-crm-backend-taupe.vercel.app/report/last-week",
+        {
+          method: "GET",
+        }
+      );
       const data = await res.json();
       setLeadsInCloseds(data);
     } catch (error) {
@@ -35,9 +41,12 @@ const Report = () => {
 
   const leadAgentClose = async () => {
     try {
-      const res = await fetch("http://localhost:3000/closed/salesagent", {
-        method: "GET",
-      });
+      const res = await fetch(
+        "https://anvaya-crm-backend-taupe.vercel.app/closed/salesagent",
+        {
+          method: "GET",
+        }
+      );
       const data = await res.json();
       setClosedAgentLead(data);
     } catch (error) {
@@ -47,9 +56,12 @@ const Report = () => {
 
   const leadStatusDistribution = async () => {
     try {
-      const res = await fetch("http://localhost:3000/report/leadDistribution", {
-        method: "GET",
-      });
+      const res = await fetch(
+        "https://anvaya-crm-backend-taupe.vercel.app/report/leadDistribution",
+        {
+          method: "GET",
+        }
+      );
       const data = await res.json();
       setLeadDistributionStatus(data);
     } catch (error) {

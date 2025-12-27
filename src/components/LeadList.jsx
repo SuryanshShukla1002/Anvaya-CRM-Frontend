@@ -10,7 +10,7 @@ const LeadList = () => {
 
   const handleSalesAgent = async () => {
     try {
-      const res = await fetch("http://localhost:3000/agents");
+      const res = await fetch("https://anvaya-crm-backend-taupe.vercel.app/agents");
       const salesData = await res.json();
       setAgent(salesData);
     } catch (err) {
@@ -43,8 +43,8 @@ const LeadList = () => {
       setLoading(true);
       try {
         const url = agentId
-          ? `http://localhost:3000/lead/status/get?salesAgent=${agentId}`
-          : `http://localhost:3000/leads`;
+          ? `https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?salesAgent=${agentId}`
+          : `https://anvaya-crm-backend-taupe.vercel.app/leads`;
         const res = await fetch(url);
         const data = await res.json();
         setAllLead(data);
@@ -61,8 +61,8 @@ const LeadList = () => {
       setLoading(true);
       try {
         const statusUrl = status
-          ? `http://localhost:3000/lead/status/get?status=${status}`
-          : `http://localhost:3000/leads`;
+          ? `https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?status=${status}`
+          : `https://anvaya-crm-backend-taupe.vercel.app/leads`;
         const res = await fetch(statusUrl);
         const data = await res.json();
         setAllLead(data);

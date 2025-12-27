@@ -7,9 +7,12 @@ const Settings = () => {
 
   const fetchAllLeads = async () => {
     try {
-      const res = await fetch("http://localhost:3000/leads", {
-        method: "GET",
-      });
+      const res = await fetch(
+        "https://anvaya-crm-backend-taupe.vercel.app/leads",
+        {
+          method: "GET",
+        }
+      );
       if (!res.ok) {
         console.log("Unable to fetch all leads");
         return;
@@ -23,9 +26,12 @@ const Settings = () => {
 
   const deleteLead = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/leads/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://anvaya-crm-backend-taupe.vercel.app/leads/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (!res.ok) {
         console.log("Unable to delete the lead ");
         return;

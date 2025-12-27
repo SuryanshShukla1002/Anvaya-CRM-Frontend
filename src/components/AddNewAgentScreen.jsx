@@ -11,11 +11,14 @@ const AddNewAgentScreen = () => {
   const handleCreateAgent = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:3000/agents", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(agentcreate),
-      });
+      const res = await fetch(
+        "https://anvaya-crm-backend-taupe.vercel.app/agents",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(agentcreate),
+        }
+      );
       if (!res.ok) return;
       await res.json();
       setAgentcreate({ name: "", email: "" });

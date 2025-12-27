@@ -10,7 +10,7 @@ const SalesAgentView = () => {
   const handleEachSalesAgent = async () => {
     try {
       const res = await fetch(
-        `http://localhost:3000/lead/status/get?salesAgent=${agentId}`,
+        `https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?salesAgent=${agentId}`,
         {
           method: "GET",
         }
@@ -36,9 +36,13 @@ const SalesAgentView = () => {
       if (!eachStatusId) return;
       try {
         const url = statusId
-          ? `http://localhost:3000/lead/status/get?salesAgent=${agentId}&status=${statusId}`
+          ? `https://anvaya-crm-backend-taupe.vercel.app/lead/status/get?salesAgent=${agentId}&status=${statusId}`
           : ``;
         const res = await fetch(url);
+        if (!res.ok) {
+          setNoResult(true);
+          return;
+        }
         const data = await res.json();
         console.log(data);
         setSpecificAgentLead(data);
