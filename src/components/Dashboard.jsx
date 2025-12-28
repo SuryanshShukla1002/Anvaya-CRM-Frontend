@@ -181,7 +181,6 @@ const Dashboard = () => {
                     <option value="Contacted">Contacted</option>
                     <option value="Qualified">Qualified</option>
                     <option value="Proposal Sent">Proposal Sent</option>
-                    <option value="Closed">Closed</option>
                   </select>
                 </div>
               </div>
