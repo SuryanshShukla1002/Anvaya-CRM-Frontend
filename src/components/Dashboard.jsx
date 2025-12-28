@@ -105,30 +105,36 @@ const Dashboard = () => {
           </div>
 
           <div className="w-full lg:w-3/4 px-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-              {leads.slice(0, 3).map((lead) => (
-                <div key={lead._id} className="card bg-primary shadow-sm">
-                  <figure className="px-6 pt-6">
-                    <img
-                      src="https://placehold.co/600x400?text=Leads"
-                      alt="Lead"
-                      className="rounded-xl"
-                    />
-                  </figure>
-                  <div className="card-body items-center text-center">
-                    <h2 className="card-title text-white text-sm sm:text-base">
-                      Lead name: {lead.name}
-                    </h2>
-                    <p className="text-white text-sm">
-                      <b>Source: {lead.source}</b>
-                    </p>
-                    <Link to={`/leadManage/${lead.id || lead._id}`}>
-                      <button className="btn btn-secondary">View Now</button>
-                    </Link>
+            {loading ? (
+              <div className="mt-6 text-center text-lg font-semibold text-gray-600">
+                Leads cards are loading...
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                {leads.slice(0, 3).map((lead) => (
+                  <div key={lead._id} className="card bg-primary shadow-sm">
+                    <figure className="px-6 pt-6">
+                      <img
+                        src="https://placehold.co/600x400?text=Leads"
+                        alt="Lead"
+                        className="rounded-xl"
+                      />
+                    </figure>
+                    <div className="card-body items-center text-center">
+                      <h2 className="card-title text-white text-sm sm:text-base">
+                        Lead name: {lead.name}
+                      </h2>
+                      <p className="text-white text-sm">
+                        <b>Source: {lead.source}</b>
+                      </p>
+                      <Link to={`/leadManage/${lead.id || lead._id}`}>
+                        <button className="btn btn-secondary">View Now</button>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
 
             <div className="bg-white shadow-md p-4 rounded-lg mt-6 w-full">
               <h1 className="font-semibold mb-2 text-xl sm:text-2xl">
