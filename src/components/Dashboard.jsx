@@ -13,10 +13,13 @@ const Dashboard = () => {
   const fetchLeadData = async () => {
     try {
       setLoading(true);
-      const res = await fetch("https://anvaya-crm-backend-taupe.vercel.app/leads", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        "https://anvaya-crm-backend-taupe.vercel.app/leads",
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       const data = await res.json();
       setLeads(data);
       setLoading(false);
@@ -133,26 +136,32 @@ const Dashboard = () => {
               </h1>
 
               <div className="space-y-4">
-                <div className="card p-4 rounded-xl bg-green-300">
-                  <h2 className="text-base sm:text-xl font-semibold">
-                    New: [{showNew.length}]
-                  </h2>
-                </div>
-                <div className="card p-4 rounded-xl bg-green-300">
-                  <h2 className="text-base sm:text-xl font-semibold">
-                    Contacted: [{showContacted.length}]
-                  </h2>
-                </div>
-                <div className="card p-4 rounded-xl bg-green-300">
-                  <h2 className="text-base sm:text-xl font-semibold">
-                    Qualified: [{showQualified.length}]
-                  </h2>
-                </div>
-                <div className="card p-4 rounded-xl bg-green-300">
-                  <h2 className="text-base sm:text-xl font-semibold">
-                    Proposal Sent: [{showProposalSent.length}]
-                  </h2>
-                </div>
+                {(filteringStatus === "" || filteringStatus === "New") && (
+                  <div className="card p-4 rounded-xl bg-green-300">
+                    <h2>New: [{showNew.length}]</h2>
+                  </div>
+                )}
+
+                {(filteringStatus === "" ||
+                  filteringStatus === "Contacted") && (
+                  <div className="card p-4 rounded-xl bg-green-300">
+                    <h2>Contacted: [{showContacted.length}]</h2>
+                  </div>
+                )}
+
+                {(filteringStatus === "" ||
+                  filteringStatus === "Qualified") && (
+                  <div className="card p-4 rounded-xl bg-green-300">
+                    <h2>Qualified: [{showQualified.length}]</h2>
+                  </div>
+                )}
+
+                {(filteringStatus === "" ||
+                  filteringStatus === "Proposal Sent") && (
+                  <div className="card p-4 rounded-xl bg-green-300">
+                    <h2>Proposal Sent: [{showProposalSent.length}]</h2>
+                  </div>
+                )}
               </div>
             </div>
 
